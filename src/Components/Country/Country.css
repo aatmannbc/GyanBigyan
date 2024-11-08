@@ -1,0 +1,14 @@
+.country-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.country-title {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.country-description {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
