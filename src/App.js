@@ -1,12 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { LoginSignup } from './Components/LoginSignup/LoginSignup';
+import LoginSignup from './Components/LoginSignup/LoginSignup';
+import Signup from './Components/LoginSignup/Signup';
 import Home from './Components/Home/Home';
-import Play from './Components/Play/Play';
 import Nepal from './Components/Country/Nepal';
+import Play from './Components/Play/Play';
 import Jamaica from './Components/Country/Jamaica';
 import Ghana from './Components/Country/Ghana';
+
 
 function App() {
   return (
@@ -15,10 +17,11 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/login" element={<LoginSignup />} />
-          <Route path="/play" element={<Play />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/nepal" element={<Nepal />} />
           <Route path="/jamaica" element={<Jamaica />} />
           <Route path="/ghana" element={<Ghana />} />
+          <Route path="/play" element={<Play />} />
         </Routes>
       </div>
     </Router>
