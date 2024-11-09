@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { auth } from '/Users/aatmannbc/Documents/GyanBigyan/src/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Signup.css';
 
 const Signup = () => {
@@ -45,6 +45,7 @@ const Signup = () => {
         {error && <p className="error">{error}</p>}
         <button type="submit" className="signup-button">Sign Up</button>
       </form>
+      <button className="back-button" onClick={() => navigate('/')}>Back to Home</button>
     </div>
   );
 };

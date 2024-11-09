@@ -64,3 +64,34 @@
 .info {
   font-size: 1.2em;
 }
+
+.game-over {
+  margin-top: 20px;
+}
+
+.restart-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.restart-button:hover {
+  background-color: #45a049;
+}
+
+.back-button {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+
+.back-button:hover {
+  background-color: #d32f2f;
+}

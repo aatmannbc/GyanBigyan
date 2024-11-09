@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { auth } from '/Users/aatmannbc/Documents/GyanBigyan/src/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './LoginSignup.css';
 
 const LoginSignup = () => {
@@ -35,9 +35,10 @@ const LoginSignup = () => {
         {error && <p className="error">{error}</p>}
         <button type="submit" className="login-button">Login</button>
         <div className="signup-link">
-          Don't have an account? <a href="/signup">Sign up</a>
+          Don't have an account? <Link to="/signup">Sign up</Link>
         </div>
       </form>
+      <button className="back-button" onClick={() => navigate('/')}>Back to Home</button>
     </div>
   );
 };

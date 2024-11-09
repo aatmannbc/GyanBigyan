@@ -5,10 +5,9 @@ import LoginSignup from './Components/LoginSignup/LoginSignup';
 import Signup from './Components/LoginSignup/Signup';
 import Home from './Components/Home/Home';
 import Nepal from './Components/Country/Nepal';
-import Play from './Components/Play/Play';
 import Jamaica from './Components/Country/Jamaica';
 import Ghana from './Components/Country/Ghana';
-
+import Play from './Components/Play/Play';
 
 function App() {
   return (

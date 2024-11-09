@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Country.css';
 
 function Nepal() {
@@ -8,6 +9,9 @@ function Nepal() {
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [attempts, setAttempts] = useState(0);
   const [wrongAnswer, setWrongAnswer] = useState(null);
+  const [highScore, setHighScore] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
+  const navigate = useNavigate();
 
   const questions = [
     { question_text: "What is the capital city of Nepal?", answer: "Kathmandu", options: ["Kathmandu", "Pokhara", "Lumbini"] },
@@ -43,6 +47,7 @@ function Nepal() {
       setTimeLeft(prevTime => {
         if (prevTime <= 1) {
           clearInterval(timer);
+          setGameOver(true);
           return 0;
         }
         return prevTime - 1;
@@ -51,6 +56,12 @@ function Nepal() {
 
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    if (score > highScore) {
+      setHighScore(score);
+    }
+  }, [score]);
 
   const handleTileClick = (index) => {
     if (!selectedTiles.includes(index)) {
@@ -66,20 +77,73 @@ function Nepal() {
         setScore(score + 10);
       } else if (attempts === 1) {
         setScore(score + 5);
+      } else {
+        setScore(score + 1);
       }
       setSelectedTiles([...selectedTiles, index]);
       setCurrentQuestion(null);
+      checkForBingo();
     } else {
       setWrongAnswer(option);
       setAttempts(attempts + 1);
-      if (attempts >= 1) {
-        alert('You have one more try left!');
-      }
-      if (attempts >= 2) {
-        setSelectedTiles([...selectedTiles, index]);
-        setCurrentQuestion(null);
+    }
+  };
+
+  const checkForBingo = () => {
+    const gridSize = 5;
+    let horizontalBingo = false;
+    let verticalBingo = false;
+    let diagonalBingo1 = true;
+    let diagonalBingo2 = true;
+
+    // Check horizontal
+    for (let i = 0; i < gridSize; i++) {
+      const rowStart = i * gridSize;
+      const row = Array.from({ length: gridSize }, (_, j) => rowStart + j);
+      if (row.every(tile => selectedTiles.includes(tile))) {
+        horizontalBingo = true;
+        setScore(prevScore => prevScore + 50);
       }
     }
+
+    // Check vertical
+    for (let i = 0; i < gridSize; i++) {
+      const column = Array.from({ length: gridSize }, (_, j) => j * gridSize + i);
+      if (column.every(tile => selectedTiles.includes(tile))) {
+        verticalBingo = true;
+        setScore(prevScore => prevScore + 50);
+      }
+    }
+
+    // Check diagonal from top-left to bottom-right
+    const diagonal1 = Array.from({ length: gridSize }, (_, i) => i * gridSize + i);
+    if (diagonal1.every(tile => selectedTiles.includes(tile))) {
+      diagonalBingo1 = true;
+      setScore(prevScore => prevScore + 50);
+    }
+
+    // Check diagonal from top-right to bottom-left
+    const diagonal2 = Array.from({ length: gridSize }, (_, i) => i * gridSize + (gridSize - 1 - i));
+    if (diagonal2.every(tile => selectedTiles.includes(tile))) {
+      diagonalBingo2 = true;
+      setScore(prevScore => prevScore + 50);
+    }
+
+    if (horizontalBingo || verticalBingo || diagonalBingo1 || diagonalBingo2) {
+      if (selectedTiles.length === gridSize * gridSize) {
+        alert(`BINGOOOOO!!!! YOU BEAT THE GAME !!! in ${120 - timeLeft} seconds. High Score: ${highScore}`);
+      }
+    }
+  };
+
+  const handleRestart = () => {
+    setSelectedTiles([]);
+    setScore(0);
+    setTimeLeft(120);
+    setCurrentQuestion(null);
+    setAttempts(0);
+    setWrongAnswer(null);
+    setGameOver(false);
   };
 
   return (
@@ -116,7 +180,18 @@ function Nepal() {
       <div className="info">
         <p>Time Left: {timeLeft} seconds</p>
         <p>Score: {score}</p>
+        <p>High Score: {highScore}</p>
       </div>
+      {gameOver && (
+        <div className="game-over">
+          <p>Game Over! Your score: {score}</p>
+          <button onClick={handleRestart}>Play Again</button>
+        </div>
+      )}
+      {!gameOver && (
+        <button onClick={handleRestart} className="restart-button">Restart</button>
+      )}
+      <button onClick={() => navigate('/play')} className="back-button">Back to Board</button>
     </div>
   );
 }
