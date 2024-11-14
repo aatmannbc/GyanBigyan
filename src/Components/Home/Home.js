@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '/Users/aatmannbc/Documents/GyanBigyan/src/firebase';
+import { auth } from "/Users/kritika/Desktop/GyanBigyan-2/src/firebase.js";
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import './Home.css';
 

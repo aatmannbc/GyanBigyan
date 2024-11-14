@@ -1,31 +1,50 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F1FAEE;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
 .home-container {
+  background-color: #A8DADC;
+  width: 400px; /* Fixed large width */
+  height: 500px; /* Fixed large height */
+  padding: 2rem;
+  border: 3px solid #E63946;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
-  padding: 20px;
-}
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }
+  .home-title {
+    font-size: 24px;
+    color: #1D3557;
+    margin-bottom: 1rem;
+  }
+  
 
-.home-title {
-  font-size: 2.5em;
-  margin-bottom: 20px;
-}
+  .home-description {
+    display: block;
+    font-size: 20px;
+    color: #1D3557;
+    margin-bottom: 1rem;
+  }
 
-.home-description {
-  font-size: 1.2em;
-  margin-bottom: 30px;
-}
-
-.home-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border: none;
-  border-radius: 4px;
-}
+  .home-button {
+    background-color: #457B9D;
+    color: white;
+    padding: 0.8rem;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
 
 .play-button {
   background-color: #4CAF50;
@@ -42,14 +61,14 @@
 }
 
 .home-button:hover {
-  background-color: #45a049;
+  background-color: #E63946;
 }
 
 .navbar {
   display: flex;
   justify-content: flex-end;
   padding: 10px;
-  background-color: #ea4f4f;
+  background-color:  #F1FAEE;;
   position: fixed;
   width: 100%;
   top: 0px;

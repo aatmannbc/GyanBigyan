@@ -1,6 +1,17 @@
 .country-container {
+  background-color: #A8DADC;
+  width: 100%; /* Adjust width to fit the screen */
+  max-width: 90vw; /* Ensure it doesn’t exceed the screen width */
+  padding: 2rem;
+  border: 3px solid #E63946;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
 }
 
 .country-title {
@@ -95,3 +106,4 @@
 .back-button:hover {
   background-color: #d32f2f;
 }
+
