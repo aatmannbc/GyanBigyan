@@ -15,32 +15,44 @@
 }
 
 .country-title {
-  font-size: 2.5em;
-  margin-bottom: 20px;
+  font-size: 50px;
+    color: #1D3557;
+    margin-bottom: 1rem;
+    font-weight: bold;
 }
 
 .country-description {
-  font-size: 1.2em;
   margin-bottom: 30px;
+  font-size: 23px;
+  color: #1D3557;
 }
 
 .board {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 20px;
 }
 
 .tile {
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  padding: 20px;
+  font-weight: bold;
+  font-size: 3em;
+  width: 80px; /* Adjust dimensions */
+  height: 80px;
+  border: 10px solid #000000;
+  text-align: match-parent;
+  line-height: 60px;
   cursor: pointer;
-  text-align: center;
+  transition: background-color 0.3s ease;
 }
 
-.tile.selected {
-  background-color: #4CAF50;
+.tile.correct {
+  background-color: rgb(99, 147, 99);
+  color: white;
+}
+
+.tile.incorrect {
+  background-color: rgb(168, 57, 57);
   color: white;
 }
 
@@ -62,7 +74,7 @@
   width: 100%;
 }
 
-.question-modal button.wrong-answer {
+/* .question-modal button.wrong-answer {
   background-color: red;
   color: white;
 }
@@ -70,7 +82,7 @@
 .question-modal button.correct-answer {
   background-color: green;
   color: white;
-}
+} */
 
 .info {
   font-size: 1.2em;
@@ -81,7 +93,7 @@
 }
 
 .restart-button {
-  background-color: #4CAF50;
+  background-color: #457B9D;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -90,7 +102,7 @@
 }
 
 .restart-button:hover {
-  background-color: #45a049;
+  background-color: #196492;
 }
 
 .back-button {
@@ -107,3 +119,10 @@
   background-color: #d32f2f;
 }
 
+.bingo-message {
+  color: green;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0;
+}
