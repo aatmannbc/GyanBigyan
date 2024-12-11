@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/GyanBigyan/static/css/main.9a714cf3.css",
+    "main.js": "/GyanBigyan/static/js/main.687275fa.js",
+    "static/js/453.be803f3e.chunk.js": "/GyanBigyan/static/js/453.be803f3e.chunk.js",
+    "index.html": "/GyanBigyan/index.html",
+    "main.9a714cf3.css.map": "/GyanBigyan/static/css/main.9a714cf3.css.map",
+    "main.687275fa.js.map": "/GyanBigyan/static/js/main.687275fa.js.map",
+    "453.be803f3e.chunk.js.map": "/GyanBigyan/static/js/453.be803f3e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9a714cf3.css",
+    "static/js/main.687275fa.js"
+  ]
+}
