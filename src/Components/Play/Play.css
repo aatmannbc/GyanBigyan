@@ -1,3 +1,4 @@
+
 body {
   display: flex;
   align-items: center;
@@ -6,7 +7,7 @@ body {
   height: 100vh;
   margin: 0;
   font-family: Arial, sans-serif;
-}
+}  
 
 .play-container {
   background-color: #A8DADC;
@@ -55,4 +56,48 @@ body {
 
 .play-button:hover {
   background-color: #196492;
+}
+.instructions {
+  text-align: justify;
+  border: 3px solid #E63946;
+}
+.instructions p {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #1D3557;
+  margin-bottom: 10px;
+}
+
+.instructions ol {
+  list-style-type: decimal;
+  padding-left: 30px;
+}
+
+.instructions li {
+  font-size: 1em;
+  color: #196492;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.instructions li::marker {
+  color: #f44336;
+  font-size: 1.2em;
+}
+.home-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #f44336;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+  background-color: #d32f2f;
+}
+.home-button-container {
+  margin-top: 40px; /* Add margin to move it down */
 }

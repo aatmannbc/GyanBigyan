@@ -1,7 +1,7 @@
 .country-container {
   background-color: #A8DADC;
-  width: 100%; /* Adjust width to fit the screen */
-  max-width: 90vw; /* Ensure it doesn’t exceed the screen width */
+  width: 100%;
+  max-width: 90vw;
   padding: 2rem;
   border: 3px solid #E63946;
   border-radius: 10px;
@@ -16,15 +16,31 @@
 
 .country-title {
   font-size: 50px;
-    color: #1D3557;
-    margin-bottom: 1rem;
-    font-weight: bold;
+  color: #1D3557;
+  margin-bottom: 1rem;
+  font-weight: bold;
 }
 
 .country-description {
   margin-bottom: 30px;
   font-size: 23px;
   color: #1D3557;
+}
+
+.boards-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 90vw;
+  flex-wrap: wrap;
+}
+
+.player-board-container {
+  width: 45%;
+  margin: 10px;
+  border: 2px solid #1D3557; 
+  border-radius: 10px; 
+  padding: 10px; 
 }
 
 .board {
@@ -36,11 +52,11 @@
 
 .tile {
   font-weight: bold;
-  font-size: 3em;
-  width: 80px; /* Adjust dimensions */
-  height: 80px;
-  border: 10px solid #000000;
-  text-align: match-parent;
+  font-size: 2em;
+  width: 60px;
+  height: 60px;
+  border: 5px solid #000000;
+  text-align: center;
   line-height: 60px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -73,16 +89,6 @@
   padding: 10px;
   width: 100%;
 }
-
-/* .question-modal button.wrong-answer {
-  background-color: red;
-  color: white;
-}
-
-.question-modal button.correct-answer {
-  background-color: green;
-  color: white;
-} */
 
 .info {
   font-size: 1.2em;
@@ -126,3 +132,37 @@
   text-align: center;
   margin: 20px 0;
 }
+.username-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.username-form label {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.username-form input {
+  padding: 10px;
+  font-size: 1em;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.username-form button {
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #f44336;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.username-form button:hover {
+  background-color: #d32f2f;
+}
+

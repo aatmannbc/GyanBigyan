@@ -24,14 +24,16 @@ body {
   .home-title {
     font-size: 24px;
     color: #1D3557;
-    margin-bottom: 1rem;
+    margin-bottom: 0rem;
   }
   
 
   .home-description {
     display: block;
+    text-align: justify;
     font-size: 20px;
     color: #1D3557;
+
     margin-bottom: 1rem;
   }
 
