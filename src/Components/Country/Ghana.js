@@ -136,6 +136,13 @@ function Ghana() {
       newBingos.add("diag-2");
       bingoFound = true;
     }
+
+    if (bingoFound) {
+      currentPlayer.score += 20; // Add 20 points for each bingo
+    }
+    if (currentPlayer.selectedTiles.length === gridSize * gridSize) {
+      currentPlayer.score += 100; // Add 100 points for housefull
+    }
     currentPlayer.completedBingos = newBingos;
     setPlayers([...players]);
     return bingoFound;

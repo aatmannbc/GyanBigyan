@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import './Country.css';
 
 function Jamaica() {
-  // Similar implementation as Nepal.js
   const [players, setPlayers] = useState([
     { id: 1, selectedTiles: [], score: 0, tileStatus: {}, completedBingos: new Set(), isComputer: false },
     { id: 2, selectedTiles: [], score: 0, tileStatus: {}, completedBingos: new Set(), isComputer: true }
@@ -13,6 +12,8 @@ function Jamaica() {
   const [gameOver, setGameOver] = useState(false);
   const [bingoMessage, setBingoMessage] = useState("");
   const [bestScore, setBestScore] = useState(0);
+  const [username, setUsername] = useState("");
+  const [isUsernameSet, setIsUsernameSet] = useState(false);
   const navigate = useNavigate();
 
   const questions = [
@@ -131,6 +132,13 @@ function Jamaica() {
       newBingos.add("diag-2");
       bingoFound = true;
     }
+    if (bingoFound) {
+      currentPlayer.score += 20; // Add 20 points for each bingo
+    }
+    if (currentPlayer.selectedTiles.length === gridSize * gridSize) {
+      currentPlayer.score += 100; // Add 100 points for housefull
+    }
+    
     currentPlayer.completedBingos = newBingos;
     setPlayers([...players]);
     return bingoFound;
@@ -150,6 +158,10 @@ function Jamaica() {
     setGameOver(false);
     setBingoMessage("");
   };
+  const handleUsernameSubmit = (e) => {
+    e.preventDefault();
+    setIsUsernameSet(true);
+  };
 
   return (
     <div className="country-container">
@@ -157,69 +169,89 @@ function Jamaica() {
       <p className="country-description">
         Welcome to the Jamaica page. Here you will find information and quizzes related to Jamaica's culture and history.
       </p>
-      {bingoMessage && <p className="bingo-message">{bingoMessage}</p>}
-      <div className="boards-container">
-        <div className="player-board-container">
-          <h2>Player 1's Board</h2>
-          <div className={`board ${currentPlayerIndex === 0 ? 'active' : ''}`}>
-            {questions.slice(0, Math.min(25, questions.length)).map((_, index) => (
-              <div
-                key={index}
-                className={`tile ${players[0].tileStatus[index] || ""}`}
-                onClick={() => currentPlayerIndex === 0 && handleTileClick(index)}
-              >
-                {players[0].selectedTiles.includes(index) ? null : index + 1}
+      {!isUsernameSet ? (
+        <form onSubmit={handleUsernameSubmit} className="username-form">
+          <label>
+            Player's name:
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </label>
+          <button type="submit">Start Game</button>
+        </form>
+      ) : (
+        <>
+          {bingoMessage && <p className="bingo-message">{bingoMessage}</p>}
+          <div className="boards-container">
+            <div className="player-board-container">
+              <h2>{username}'s Board</h2>
+              <div className={`board ${currentPlayerIndex === 0 ? 'active' : ''}`}>
+                {questions.slice(0, Math.min(25, questions.length)).map((_, index) => (
+                  <div
+                    key={index}
+                    className={`tile ${players[0].tileStatus[index] || ""}`}
+                    onClick={() => currentPlayerIndex === 0 && handleTileClick(index)}
+                  >
+                    {players[0].selectedTiles.includes(index) ? null : index + 1}
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-        <div className="player-board-container">
-          <h2>Player 2's Board</h2>
-          <div className={`board ${currentPlayerIndex === 1 ? 'active' : ''}`}>
-            {questions.slice(0, Math.min(25, questions.length)).map((_, index) => (
-              <div
-                key={index}
-                className={`tile ${players[1].tileStatus[index] || ""}`}
-                onClick={() => currentPlayerIndex === 1 && handleTileClick(index)}
-              >
-                {players[1].selectedTiles.includes(index) ? null : index + 1}
+            </div>
+            <div className="player-board-container">
+              <h2>Player 2's Board</h2>
+              <div className={`board ${currentPlayerIndex === 1 ? 'active' : ''}`}>
+                {questions.slice(0, Math.min(25, questions.length)).map((_, index) => (
+                  <div
+                    key={index}
+                    className={`tile ${players[1].tileStatus[index] || ""}`}
+                    onClick={() => currentPlayerIndex === 1 && handleTileClick(index)}
+                  >
+                    {players[1].selectedTiles.includes(index) ? null : index + 1}
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-      </div>
-      {currentQuestion !== null && (
-        <div className="question-modal">
-          <h2>{questions[currentQuestion].question_text}</h2>
-          {questions[currentQuestion].options.map((option, idx) => (
-            <button key={idx} onClick={() => handleAnswerClick(currentQuestion, option)}>
-              {option}
+          {currentQuestion !== null && (
+            <div className="question-modal">
+              <h2>{questions[currentQuestion].question_text}</h2>
+              {questions[currentQuestion].options.map((option, idx) => (
+                <button key={idx} onClick={() => handleAnswerClick(currentQuestion, option)}>
+                  {option}
+                </button>
+              ))}
+            </div>
+          )}
+          <div className="info">
+            {players.map((player, index) => (
+              <p key={player.id}>
+                {index === 0 ? username : `Player ${player.id}`} Score: {player.score}
+              </p>
+            ))}
+            <p>Best Score: {bestScore}</p>
+          </div>
+          {gameOver && (
+            <div className="game-over">
+              <p>Game Over! {players[0].score > players[1].score ? username : 'Player 2'} wins!</p>
+              <button onClick={handleRestart}>Play Again</button>
+            </div>
+          )}
+          {!gameOver && (
+            <button onClick={handleRestart} className="restart-button">
+              Restart
             </button>
-          ))}
-        </div>
+          )}
+          <button onClick={() => navigate('/')} className="back-button">
+            Home
+          </button>
+        </>
       )}
-      <div className="info">
-        {players.map((player) => (
-          <p key={player.id}>Player {player.id} Score: {player.score}</p>
-        ))}
-        <p>Best Score: {bestScore}</p>
-      </div>
-      {gameOver && (
-        <div className="game-over">
-          <p>Game Over! Player {players[0].score > players[1].score ? 1 : 2} wins!</p>
-          <button onClick={handleRestart}>Play Again</button>
-        </div>
-      )}
-      {!gameOver && (
-        <button onClick={handleRestart} className="restart-button">
-          Restart
-        </button>
-      )}
-      <button onClick={() => navigate('/play')} className="back-button">
-        Back to Board
-      </button>
     </div>
   );
 }
+
 
 export default Jamaica;
